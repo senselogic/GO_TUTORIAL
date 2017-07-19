@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Shows how to use the Go language to implement both the front-end and the back-end sides of a blog website.
+Shows how to use the Go language to implement both the front-end and the back-end sides of a minimalistic blog website.
 
 ## Version
 
