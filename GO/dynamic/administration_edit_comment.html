@@ -1,0 +1,58 @@
+{{ extends "/administration_page.html" }}
+{{ define "main_content" }}
+    <h4>
+        Comments
+    </h4>
+    <div class="card">
+        <div class="card-content">
+            <form action="/administration/change_comment/{{ .Comment.Id }}" method="post">
+                <div class="row">
+                    <div class="col m2">
+                        Text :
+                    </div>
+                    <div class="col m10">
+                        <textarea name="text">{{ .Comment.Text }}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Date :
+                    </div>
+                    <div class="col m10">
+                        <input name="date" type="text" value="{{ .Comment.Date }}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Article :
+                    </div>
+                    <div class="col m10">
+                        <select name="article_id">
+                            {{ range .ArticleArray }}
+                                <option value="{{ .Id }}" {{ if eq .Id $.Comment.ArticleId }}selected="selected"{{ end }}>{{ .Title }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        User :
+                    </div>
+                    <div class="col m10">
+                        <select name="user_id">
+                            {{ range .UserArray }}
+                                <option value="{{ .Id }}" {{ if eq .Id $.Comment.UserId }}selected="selected"{{ end }}>{{ .Pseudonym }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                </div>
+                <input class="btn" type="submit" value="Apply"/>
+                <a class="btn" href="/administration/edit_comments">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+{{ end }}
+
+

@@ -1,0 +1,50 @@
+{{ extends "/administration_page.html" }}
+{{ define "main_content" }}
+    <h4>
+        Sections
+    </h4>
+    <div class="card">
+        <div class="card-content">
+            <form action="/administration/change_section/{{ .Section.Id }}" method="post">
+                <div class="row">
+                    <div class="col m2">
+                        Number :
+                    </div>
+                    <div class="col m10">
+                        <input name="number" type="text" value="{{ .Section.Number }}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Name :
+                    </div>
+                    <div class="col m10">
+                        <input name="name" type="text" value="{{ .Section.Name }}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Text :
+                    </div>
+                    <div class="col m10">
+                        <textarea name="text">{{ .Section.Text }}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Image :
+                    </div>
+                    <div class="col m10">
+                        <input name="image" type="text" value="{{ .Section.Image }}"/>
+                    </div>
+                </div>
+                <input class="btn" type="submit" value="Apply"/>
+                <a class="btn" href="/administration/edit_sections">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+{{ end }}
+
+

@@ -1,0 +1,34 @@
+{{ extends "/administration_page.html" }}
+{{ define "main_content" }}
+    <h4>
+        Subscribers
+    </h4>
+    <div class="card">
+        <div class="card-content">
+            <form action="/administration/change_subscriber/{{ .Subscriber.Id }}" method="post">
+                <div class="row">
+                    <div class="col m2">
+                        Name :
+                    </div>
+                    <div class="col m10">
+                        <input name="name" type="text" value="{{ .Subscriber.Name }}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Email :
+                    </div>
+                    <div class="col m10">
+                        <input name="email" type="text" value="{{ .Subscriber.Email }}"/>
+                    </div>
+                </div>
+                <input class="btn" type="submit" value="Apply"/>
+                <a class="btn" href="/administration/edit_subscribers">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+{{ end }}
+
+

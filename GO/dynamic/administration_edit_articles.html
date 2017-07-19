@@ -1,0 +1,123 @@
+{{ extends "/administration_page.html" }}
+{{ define "main_content" }}
+    <h4>
+        Articles
+    </h4>
+    <div class="card">
+        <div class="card-content">
+            <form action="/administration/add_article" method="post">
+                <div class="row">
+                    <div class="col m2">
+                        Title :
+                    </div>
+                    <div class="col m10">
+                        <input name="title" type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Text :
+                    </div>
+                    <div class="col m10">
+                        <textarea name="text"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Image :
+                    </div>
+                    <div class="col m10">
+                        <input name="image" type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Section :
+                    </div>
+                    <div class="col m10">
+                        <select name="section_id">
+                            {{ range .SectionArray }}
+                                <option value="{{ .Id }}">{{ .Name }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        User :
+                    </div>
+                    <div class="col m10">
+                        <select name="user_id">
+                            {{ range .UserArray }}
+                                <option value="{{ .Id }}">{{ .Pseudonym }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                </div>
+                <input class="btn" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+    <div>
+        {{ range .ArticleArray }}
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col m2">
+                            Title :
+                        </div>
+                        <div class="col m10">
+                            {{ .Title }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2">
+                            Text :
+                        </div>
+                        <div class="col m10">
+                            {{ .Text }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2">
+                            Image :
+                        </div>
+                        <div class="col m10">
+                            {{ .Image }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2">
+                            Date :
+                        </div>
+                        <div class="col m10">
+                            {{ .Date }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2">
+                            Section :
+                        </div>
+                        <div class="col m10">
+                            {{ .Section.Name }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2">
+                            User :
+                        </div>
+                        <div class="col m10">
+                            {{ .User.Pseudonym }}
+                        </div>
+                    </div>
+                    <a class="btn" href="/administration/edit_article/{{ .Id }}">
+                        Edit
+                    </a>
+                    <a class="btn" href="/administration/remove_article/{{ .Id }}">
+                        Remove
+                    </a>
+                </div>
+            </div>
+        {{ end }}
+    </div>
+{{ end }}

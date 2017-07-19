@@ -1,0 +1,74 @@
+{{ extends "/administration_page.html" }}
+{{ define "main_content" }}
+    <h4>
+        Articles
+    </h4>
+    <div class="card">
+        <div class="card-content">
+            <form action="/administration/change_article/{{ .Article.Id }}" method="post">
+                <div class="row">
+                    <div class="col m2">
+                        Title :
+                    </div>
+                    <div class="col m10">
+                        <input name="title" type="text" value="{{ .Article.Title }}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Text :
+                    </div>
+                    <div class="col m10">
+                        <textarea name="text">{{ .Article.Text }}</textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Image :
+                    </div>
+                    <div class="col m10">
+                        <input name="image" type="text" value="{{ .Article.Image }}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Date :
+                    </div>
+                    <div class="col m10">
+                        <input name="date" type="text" value="{{ .Article.Date }}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Section :
+                    </div>
+                    <div class="col m10">
+                        <select name="section_id">
+                            {{ range .SectionArray }}
+                                <option value="{{ .Id }}" {{ if eq .Id $.Article.SectionId }}selected="selected"{{ end }}>{{ .Name }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        User :
+                    </div>
+                    <div class="col m10">
+                        <select name="user_id">
+                            {{ range .UserArray }}
+                                <option value="{{ .Id }}" {{ if eq .Id $.Article.UserId }}selected="selected"{{ end }}>{{ .Pseudonym }}</option>
+                            {{ end }}
+                        </select>
+                    </div>
+                </div>
+                <input class="btn" type="submit" value="Apply"/>
+                <a class="btn" href="/administration/edit_articles">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+{{ end }}
+
+

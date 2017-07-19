@@ -1,0 +1,42 @@
+{{ extends "/page.html" }}
+{{ define "main_content" }}
+    <h2>
+        <a href="/show_section/{{ .Section.Id }}">
+            {{ .Section.Name }}
+        </a>
+    </h2>
+    <h4>
+        <a href="/show_article/{{ .Article.Id }}">
+            {{ .Article.Title }}
+        </a>
+    </h4>
+    <h5>
+        {{ .Article.User.Pseudonym }} - {{ .Article.Date }}
+    </h5>
+    <img class="responsive-img" src="/static/img/{{ .Article.ImageIndex }}.jpg"/>
+    <p>
+        {{ .Article.Text }}
+    </p>
+    <hr/>
+    {{ if .Session.User.Id }}
+        <h4>
+            Comment
+        </h4>
+        <form action="/add_comment/{{ .Article.Id }}" method="post">
+            <label for="text">
+                Text :
+            </label>
+            <textarea id="text" name="text"/></textarea>
+            <input type="submit" value="Send">
+        </form>
+    {{ end }}
+    <br/>
+    {{ range .CommentArray }}
+        <h5>
+            {{ .User.Pseudonym }} - {{ .Date }}
+        </h5>
+        <p>
+            {{ .Text }}
+        </p>
+    {{ end }}
+{{ end }}

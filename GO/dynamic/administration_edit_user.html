@@ -1,0 +1,53 @@
+{{ extends "/administration_page.html" }}
+{{ define "main_content" }}
+    <h4>
+        Users
+    </h4>
+    <div class="card">
+        <div class="card-content">
+            <form action="/administration/change_user/{{ .User.Id }}" method="post">
+                <div class="row">
+                    <div class="col m2">
+                        Email :
+                    </div>
+                    <div class="col m10">
+                        <input name="email" type="text" value="{{ .User.Email }}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Pseudonym :
+                    </div>
+                    <div class="col m10">
+                        <input name="pseudonym" type="text" value="{{ .User.Pseudonym }}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Password :
+                    </div>
+                    <div class="col m10">
+                        <input name="password" type="text" value="{{ .User.Password }}"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Is Administrator :
+                    </div>
+                    <div class="col m10">
+                        <select name="it_is_administrator">
+                            <option value="0" {{ if eq .User.ItIsAdministrator false }}selected="selected"{{ end }}>false</option>
+                            <option value="1" {{ if eq .User.ItIsAdministrator true }}selected="selected"{{ end }}>true</option>
+                        </select>
+                    </div>
+                </div>
+                <input class="btn" type="submit" value="Apply"/>
+                <a class="btn" href="/administration/edit_users">
+                    Cancel
+                </a>
+            </form>
+        </div>
+    </div>
+{{ end }}
+
+

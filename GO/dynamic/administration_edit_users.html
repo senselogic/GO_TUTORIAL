@@ -1,0 +1,94 @@
+{{ extends "/administration_page.html" }}
+{{ define "main_content" }}
+    <h4>
+        Users
+    </h4>
+    <div class="card">
+        <div class="card-content">
+            <form action="/administration/add_user" method="post">
+                <div class="row">
+                    <div class="col m2">
+                        Email :
+                    </div>
+                    <div class="col m10">
+                        <input name="email" type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Pseudonym :
+                    </div>
+                    <div class="col m10">
+                        <input name="pseudonym" type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Password :
+                    </div>
+                    <div class="col m10">
+                        <input name="password" type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Is Administrator :
+                    </div>
+                    <div class="col m10">
+                        <select name="it_is_administrator">
+                            <option value="0">false</option>
+                            <option value="1">true</option>
+                        </select>
+                    </div>
+                </div>
+                <input class="btn" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+    <div>
+        {{ range .UserArray }}
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col m2">
+                            Email :
+                        </div>
+                        <div class="col m10">
+                            {{ .Email }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2">
+                            Pseudonym :
+                        </div>
+                        <div class="col m10">
+                            {{ .Pseudonym }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2">
+                            Password :
+                        </div>
+                        <div class="col m10">
+                            {{ .Password }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2">
+                            Is Administrator :
+                        </div>
+                        <div class="col m10">
+                            {{ .ItIsAdministrator }}
+                        </div>
+                    </div>
+                    <a class="btn" href="/administration/edit_user/{{ .Id }}">
+                        Edit
+                    </a>
+                    <a class="btn" href="/administration/remove_user/{{ .Id }}">
+                        Remove
+                    </a>
+                </div>
+            </div>
+        {{ end }}
+    </div>
+{{ end }}

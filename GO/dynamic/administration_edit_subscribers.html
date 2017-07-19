@@ -1,0 +1,59 @@
+{{ extends "/administration_page.html" }}
+{{ define "main_content" }}
+    <h4>
+        Subscribers
+    </h4>
+    <div class="card">
+        <div class="card-content">
+            <form action="/administration/add_subscriber" method="post">
+                <div class="row">
+                    <div class="col m2">
+                        Name :
+                    </div>
+                    <div class="col m10">
+                        <input name="name" type="text"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col m2">
+                        Email :
+                    </div>
+                    <div class="col m10">
+                        <input name="email" type="text"/>
+                    </div>
+                </div>
+                <input class="btn" type="submit" value="Add">
+            </form>
+        </div>
+    </div>
+    <div>
+        {{ range .SubscriberArray }}
+            <div class="card">
+                <div class="card-content">
+                    <div class="row">
+                        <div class="col m2">
+                            Name :
+                        </div>
+                        <div class="col m10">
+                            {{ .Name }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col m2">
+                            Email :
+                        </div>
+                        <div class="col m10">
+                            {{ .Email }}
+                        </div>
+                    </div>
+                    <a class="btn" href="/administration/edit_subscriber/{{ .Id }}">
+                        Edit
+                    </a>
+                    <a class="btn" href="/administration/remove_subscriber/{{ .Id }}">
+                        Remove
+                    </a>
+                </div>
+            </div>
+        {{ end }}
+    </div>
+{{ end }}

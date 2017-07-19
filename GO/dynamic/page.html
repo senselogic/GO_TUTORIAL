@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"/>
+        <title>
+            Blog
+        </title>
+    </head>
+    <body class="container">
+        <div class="row">
+            <nav class="col m12">
+                <ul>
+                    {{ if .Session.UserIsConnected }}
+                        {{ if .Session.User.ItIsAdministrator }}
+                            <li>
+                                <a href="/administration">
+                                    Administration
+                                </a>
+                            </li>
+                        {{ end }}
+                    {{ end }}
+                    {{ range .SectionArray }}
+                        <li>
+                            <a href="/show_section/{{ .Id }}">
+                                {{ .Name }}
+                            </a>
+                        </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col m9">
+                <h1>
+                    Blog
+                </h1>
+                {{ template "main_content" }}
+            </div>
+            <div class="col m3">
+                {{ if .Session.UserIsConnected }}
+                    <a class="btn" href="/disconnect_user">
+                        Disconnect
+                    </a>
+                {{ else }}
+                    <div class="card">
+                        <div class="card-content">
+                            <h4>
+                                Connection
+                            </h4>
+                            <form action="/connect_user" method="post">
+                                <label for="pseudonym">
+                                    Pseudonym :
+                                    <input id="pseudonym" name="pseudonym" type="text">
+                                </label>
+                                <label for="password">
+                                    Password :
+                                    <input id="password" name="password" type="password">
+                                </label>
+                                <input class="btn" type="submit" value="Connect">
+                            </form>
+                        </div>
+                    </div>
+                {{ end }}
+                {{ if .Session.UserHasSubscribed }}
+                {{ else }}
+                    <div class="card">
+                        <div class="card-content">
+                            <h4>
+                                Newsletter
+                            </h4>
+                            <form action="/add_subscriber" method="post">
+                                <label for="name">
+                                    Name :
+                                    <input id="name" name="name" type="text">
+                                </label>
+                                <label for="email">
+                                    Email :
+                                    <input id="email" name="email" type="text">
+                                </label>
+                                <input class="btn" type="submit" value="Subscribe">
+                            </form>
+                        </div>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+        <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/materialize.min.js"></script>
+        <script>
+            $(document).ready(
+                function() 
+                {
+                    $( 'select' ).material_select();
+                }
+                );
+        </script>
+    </body>
+</html>
+{{ define "main_content" }}
+{{ end }}

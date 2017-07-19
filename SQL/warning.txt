@@ -1,0 +1,3 @@
+Foreign keys :
+- NOT NULL 
++ ON DELETE SET NULL

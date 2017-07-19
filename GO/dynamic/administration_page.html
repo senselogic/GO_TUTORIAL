@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"/>
+        
+        <title>
+            Administration
+        </title>
+    </head>
+    <body class="container">
+        <div class="row">
+            <nav class="col m12">
+                <ul>
+                    <li>
+                        <a href="/">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/administration/edit_sections">
+                            Sections
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/administration/edit_articles">
+                            Articles
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/administration/edit_comments">
+                            Comments
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/administration/edit_users">
+                            Users
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/administration/edit_subscribers">
+                            Subscribers
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="row">
+            <div class="col m9">
+                <h3>
+                    Administration
+                </h3>
+                {{ template "main_content" }}
+            </div>
+                <a class="btn" href="/disconnect_user">
+                    Disconnect
+                </a>
+            </div>
+        </div>
+        <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/materialize.min.js"></script>
+        <script>
+            $(document).ready(
+                function() 
+                {
+                    $( 'select' ).material_select();
+                }
+                );
+        </script>
+    </body>
+</html>
+{{ define "main_content" }}
+{{ end }}
