@@ -3,7 +3,8 @@ package Application;
 // == IMPORTS
 
 import ( "fmt";
-    "strconv" );
+    "strconv";
+    "github.com/dinever/golf"; );
 
 // == FUNCTIONS
 
@@ -86,4 +87,19 @@ func GetStringFromFloat64( real float64, digit_count int ) string {
 
 func GetStringFromFloat32( real float32, digit_count int ) string {
     return strconv.FormatFloat( float64( real ), 'f', digit_count, 64 );
+}
+
+// ~~
+
+func GetQueryValue( context * golf.Context, name string ) string {
+    return context.Param( name );
+}
+
+// ~~
+
+func GetPostValue( context * golf.Context, name string ) string {
+    value, error := context.Query( name );
+    Check( error );
+
+    return value;
 }
